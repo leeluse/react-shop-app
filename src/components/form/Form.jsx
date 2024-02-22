@@ -2,13 +2,15 @@ import React from 'react'
 import styles from './Form.module.scss'
 import { useForm } from 'react-hook-form'
 
-const Form = ({ title }) => {
+const Form = ({ title, getDataForm, firebaseError }) => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     mode: 'onBlur'
   })
   
   const onSubmit = ({ email, password }) => {
     console.log(email, password);
+    getDataForm(email, password);
+    reset();
 
   }
 
@@ -24,8 +26,8 @@ const Form = ({ title }) => {
   const userPassword = {
     required: "필수 필드입니다",
     minLength: {
-      value: 4,
-      message: "최소 4자입니다",
+      value: 6,
+      message: "최소 6자입니다",
     },
     maxLength: {
       value: 13,
@@ -70,8 +72,10 @@ const Form = ({ title }) => {
         }
         <button className={styles.button} type='submit'>{title}</button>
       </div>
-          <span className={styles.form_error}>
-          </span>
+      {firebaseError && (
+        <span className={styles.form_error}></span>
+      )}
+         
     </form>
   )
 }
