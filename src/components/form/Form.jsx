@@ -34,8 +34,7 @@ const Form = ({ title, getDataForm, firebaseError }) => {
       message: "최대 13자입니다",
     },
     // pattern: {
-    //   value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z]{8,}$/gm,
-    //   message: `최소 8자, 영문 1자, 숫자 1자.`,
+      // message: `최소 8자, 영문 1자, 숫자 1자.`,
     // }
   }
 
@@ -73,7 +72,7 @@ const Form = ({ title, getDataForm, firebaseError }) => {
         <button className={styles.button} type='submit'>{title}</button>
       </div>
       {firebaseError && (
-        <span className={styles.form_error}></span>
+       <span className={styles.form_error}>{firebaseError}</span>
       )}
          
     </form>
